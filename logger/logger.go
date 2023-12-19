@@ -1,6 +1,11 @@
 package logger
 
 import (
+	"github.com/gin-gonic/gin"
+	"github.com/natefinch/lumberjack"
+	"github.com/spf13/viper"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 	"net"
 	"net/http"
 	"net/http/httputil"
@@ -8,29 +13,27 @@ import (
 	"runtime/debug"
 	"strings"
 	"time"
-
-	"gin_zap_demo/config"
-
-	"github.com/gin-gonic/gin"
-	"github.com/natefinch/lumberjack"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 )
 
 var lg *zap.Logger
 
 // InitLogger 初始化Logger
-func InitLogger(cfg *config.LogConfig) (err error) {
-	writeSyncer := getLogWriter(cfg.Filename, cfg.MaxSize, cfg.MaxBackups, cfg.MaxAge)
+func Init() (err error) {
+	writeSyncer := getLogWriter(
+		viper.GetString("log.filename"),
+		viper.GetInt("log.max_size"),
+		viper.GetInt("log.max_backups"),
+		viper.GetInt("log.max_age"))
 	encoder := getEncoder()
 	var l = new(zapcore.Level)
-	err = l.UnmarshalText([]byte(cfg.Level))
+	err = l.UnmarshalText([]byte(viper.GetString("log.level")))
 	if err != nil {
 		return
 	}
 	core := zapcore.NewCore(encoder, writeSyncer, l)
 
 	lg = zap.New(core, zap.AddCaller())
+
 	zap.ReplaceGlobals(lg) // 替换zap包中全局的logger实例，后续在其他包中只需使用zap.L()调用即可
 	return
 }
@@ -64,7 +67,7 @@ func GinLogger() gin.HandlerFunc {
 		c.Next()
 
 		cost := time.Since(start)
-		lg.Info(path,
+		zap.L().Info(path,
 			zap.Int("status", c.Writer.Status()),
 			zap.String("method", c.Request.Method),
 			zap.String("path", path),
@@ -95,7 +98,7 @@ func GinRecovery(stack bool) gin.HandlerFunc {
 
 				httpRequest, _ := httputil.DumpRequest(c.Request, false)
 				if brokenPipe {
-					lg.Error(c.Request.URL.Path,
+					zap.L().Error(c.Request.URL.Path,
 						zap.Any("error", err),
 						zap.String("request", string(httpRequest)),
 					)
@@ -106,13 +109,13 @@ func GinRecovery(stack bool) gin.HandlerFunc {
 				}
 
 				if stack {
-					lg.Error("[Recovery from panic]",
+					zap.L().Error("[Recovery from panic]",
 						zap.Any("error", err),
 						zap.String("request", string(httpRequest)),
 						zap.String("stack", string(debug.Stack())),
 					)
 				} else {
-					lg.Error("[Recovery from panic]",
+					zap.L().Error("[Recovery from panic]",
 						zap.Any("error", err),
 						zap.String("request", string(httpRequest)),
 					)
