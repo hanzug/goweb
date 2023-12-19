@@ -2,6 +2,7 @@ app:
   name: "web_app"
   mode: "dev"
   port: 8081
+  ip: "192.168.32.128"
 
 log:
   level: "debug"
@@ -11,7 +12,7 @@ log:
   max_backups: 7
 
 mysql:
-  host: "127.0.0.1"
+  host: "192.168.32.128"
   port: 13306
   user: "root"
   password: "root1234"
@@ -20,8 +21,8 @@ mysql:
   max_idle_conns: 50
 
 redis:
-  host: "127.0.0.1"
-  port: 16379
+  host: "192.168.32.128"
+  port: 6379
   password: ""
   db: 0
   pool_size: 100

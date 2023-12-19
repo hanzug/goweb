@@ -1,11 +1,12 @@
 package logger
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/natefinch/lumberjack"
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"goweb/settings"
 	"net"
 	"net/http"
 	"net/http/httputil"
@@ -18,23 +19,52 @@ import (
 var lg *zap.Logger
 
 // InitLogger 初始化Logger
-func Init() (err error) {
-	writeSyncer := getLogWriter(
-		viper.GetString("log.filename"),
-		viper.GetInt("log.max_size"),
-		viper.GetInt("log.max_backups"),
-		viper.GetInt("log.max_age"))
+// Init 函数用于初始化日志记录器。
+// 参数：
+//   - cfg: 日志配置参数，包括文件名、最大大小、最大备份数量、最大保留天数等。
+//   - mode: 日志模式，可以是 "dev"（开发模式）或其他（生产模式）。
+//
+// 返回值：
+//   - err: 初始化过程中的错误，如果为 nil 表示初始化成功。
+func Init(cfg *settings.LogConfig, mode string) (err error) {
+	fmt.Println("logger init begin")          // 打印初始化开始的日志信息
+	defer fmt.Println("logger init finished") // 在函数返回前打印初始化完成的日志信息
+
+	// 获取日志写入器，根据配置创建一个具有滚动、备份等特性的写入器
+	writeSyncer := getLogWriter(cfg.Filename, cfg.MaxSize, cfg.MaxBackups, cfg.MaxAge)
+
+	// 获取日志编码器，用于将日志消息编码为字节流
 	encoder := getEncoder()
+
+	// 解析配置中的日志级别
 	var l = new(zapcore.Level)
-	err = l.UnmarshalText([]byte(viper.GetString("log.level")))
+	err = l.UnmarshalText([]byte(cfg.Level))
 	if err != nil {
+		fmt.Println("logger init failed") // 如果解析日志级别失败，打印初始化失败的日志信息
 		return
 	}
-	core := zapcore.NewCore(encoder, writeSyncer, l)
 
+	var core zapcore.Core
+
+	// 根据模式选择是否在控制台输出日志
+	if mode == "dev" {
+		consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
+		core = zapcore.NewTee(
+			zapcore.NewCore(encoder, writeSyncer, l),                                     // 主要的日志记录核心
+			zapcore.NewCore(consoleEncoder, zapcore.Lock(os.Stdout), zapcore.DebugLevel), // 控制台输出核心
+		)
+	} else {
+		core = zapcore.NewCore(encoder, writeSyncer, l) // 在生产模式下，只使用主要的日志记录核心
+	}
+
+	// 创建最终的 Logger，添加了调用者信息
 	lg = zap.New(core, zap.AddCaller())
 
-	zap.ReplaceGlobals(lg) // 替换zap包中全局的logger实例，后续在其他包中只需使用zap.L()调用即可
+	// 替换全局日志记录器为当前创建的 Logger
+	zap.ReplaceGlobals(lg)
+
+	// 打印初始化完成的日志信息
+	zap.L().Info("logger init finished")
 	return
 }
 
