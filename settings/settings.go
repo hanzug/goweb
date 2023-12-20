@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"log"
 )
 
 // compared with use viper each time we need configurations.
@@ -53,9 +52,6 @@ type LogConfig struct {
 }
 
 func Init(filePath string) (err error) {
-
-	log.Println("setting init begin")
-	defer log.Println("setting init end")
 
 	viper.SetConfigFile(filePath)
 

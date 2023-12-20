@@ -1,3 +1,69 @@
-{"level":"INFO","time":"2023-12-19T16:44:26.364+0800","caller":"logger/logger.go:38","msg":"logger init"}
-{"level":"INFO","time":"2023-12-19T16:44:26.365+0800","caller":"goweb/main.go:25","msg":"logger init finished\n"}
-{"level":"INFO","time":"2023-12-19T16:44:26.367+0800","caller":"goweb/main.go:37","msg":"redis is running"}
+{"level":"INFO","time":"2023-12-20T17:35:32.195+0800","caller":"logger/logger.go:66","msg":"logger init finished"}
+{"level":"INFO","time":"2023-12-20T17:35:32.196+0800","caller":"goweb/main.go:33","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-20T17:35:32.196+0800","caller":"goweb/main.go:36","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-20T17:35:32.200+0800","caller":"goweb/main.go:41","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-20T17:35:32.200+0800","caller":"goweb/main.go:44","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-20T17:35:32.201+0800","caller":"goweb/main.go:49","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-20T17:35:32.201+0800","caller":"goweb/main.go:52","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-20T17:35:32.201+0800","caller":"goweb/main.go:57","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-20T17:36:39.053+0800","caller":"logger/logger.go:66","msg":"logger init finished"}
+{"level":"INFO","time":"2023-12-20T17:36:39.055+0800","caller":"goweb/main.go:32","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-20T17:36:39.055+0800","caller":"goweb/main.go:35","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-20T17:36:39.060+0800","caller":"goweb/main.go:40","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-20T17:36:39.060+0800","caller":"goweb/main.go:43","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-20T17:36:39.061+0800","caller":"goweb/main.go:48","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-20T17:36:39.061+0800","caller":"goweb/main.go:51","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-20T17:36:39.061+0800","caller":"goweb/main.go:56","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-20T18:14:09.840+0800","caller":"goweb/main.go:33","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-20T18:14:09.842+0800","caller":"goweb/main.go:36","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-20T18:14:09.845+0800","caller":"goweb/main.go:41","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-20T18:14:09.845+0800","caller":"goweb/main.go:44","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-20T18:14:09.846+0800","caller":"goweb/main.go:49","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-20T18:14:09.847+0800","caller":"goweb/main.go:52","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-20T18:14:09.847+0800","caller":"goweb/main.go:57","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-20T18:43:44.437+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-20T18:43:44.439+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-20T18:43:44.443+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-20T18:43:44.443+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-20T18:43:44.445+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-20T18:43:44.445+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-20T18:43:44.445+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-20T18:43:44.445+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-20T18:43:44.446+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-20T21:39:40.190+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-20T21:39:40.191+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-20T21:39:40.193+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-20T21:39:40.193+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-20T21:39:40.194+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-20T21:39:40.194+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-20T21:39:40.194+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-20T21:39:40.194+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-20T21:39:40.195+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-20T21:40:01.336+0800","caller":"logger/logger.go:97","msg":"/post","status":404,"method":"POST","path":"/post","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0}
+{"level":"ERROR","time":"2023-12-20T21:41:48.898+0800","caller":"controller/user.go:19","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2023-12-20T21:41:48.898+0800","caller":"logger/logger.go:97","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0004991}
+{"level":"INFO","time":"2023-12-20T21:48:00.746+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-20T21:48:00.746+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-20T21:48:00.748+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-20T21:48:00.748+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-20T21:48:00.749+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-20T21:48:00.749+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-20T21:48:00.749+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-20T21:48:00.749+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-20T21:48:00.749+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"ERROR","time":"2023-12-20T21:48:03.808+0800","caller":"controller/user.go:24","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2023-12-20T21:48:03.808+0800","caller":"logger/logger.go:97","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0003006}
+{"level":"INFO","time":"2023-12-20T21:48:38.146+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-20T21:48:38.147+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-20T21:48:38.149+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-20T21:48:38.149+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-20T21:48:38.150+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-20T21:48:38.150+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-20T21:48:38.150+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-20T21:48:38.150+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-20T21:48:38.150+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"ERROR","time":"2023-12-20T21:48:39.710+0800","caller":"controller/user.go:23","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2023-12-20T21:48:39.710+0800","caller":"logger/logger.go:97","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0005045}
+{"level":"INFO","time":"2023-12-20T21:49:05.742+0800","caller":"logger/logger.go:97","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0667992}
+{"level":"ERROR","time":"2023-12-20T21:49:24.688+0800","caller":"logic/user.go:19","msg":"SignUp failed, user existed"}
+{"level":"INFO","time":"2023-12-20T21:49:24.688+0800","caller":"logger/logger.go:97","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0018662}

@@ -27,8 +27,7 @@ var lg *zap.Logger
 // 返回值：
 //   - err: 初始化过程中的错误，如果为 nil 表示初始化成功。
 func Init(cfg *settings.LogConfig, mode string) (err error) {
-	fmt.Println("logger init begin")          // 打印初始化开始的日志信息
-	defer fmt.Println("logger init finished") // 在函数返回前打印初始化完成的日志信息
+	fmt.Println("logger init begin") // 打印初始化开始的日志信息
 
 	// 获取日志写入器，根据配置创建一个具有滚动、备份等特性的写入器
 	writeSyncer := getLogWriter(cfg.Filename, cfg.MaxSize, cfg.MaxBackups, cfg.MaxAge)
@@ -63,8 +62,6 @@ func Init(cfg *settings.LogConfig, mode string) (err error) {
 	// 替换全局日志记录器为当前创建的 Logger
 	zap.ReplaceGlobals(lg)
 
-	// 打印初始化完成的日志信息
-	zap.L().Info("logger init finished")
 	return
 }
 
