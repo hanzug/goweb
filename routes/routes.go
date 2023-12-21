@@ -13,7 +13,7 @@ func SetupRouter() *gin.Engine {
 	r.Use(logger.GinLogger(), logger.GinRecovery(true))
 
 	r.POST("/signup", controller.SignUpHandler)
-	r.POST("login", controller.LoginHandler)
+	r.POST("/login", controller.LoginHandler)
 
 	r.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "OK")

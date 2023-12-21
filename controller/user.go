@@ -16,10 +16,6 @@ func SignUpHandler(c *gin.Context) {
 	p := new(models.ParamSignUp)
 
 	if err := c.ShouldBindJSON(p); err != nil {
-		c.JSON(http.StatusOK, gin.H{
-			"password":   p.Password,
-			"repassword": p.RePassword,
-		})
 		zap.L().Error("SignUp with invalid param", zap.Error(err))
 
 		errs, ok := err.(validator.ValidationErrors)
@@ -52,17 +48,33 @@ func SignUpHandler(c *gin.Context) {
 	return
 }
 
-//func LoginHandler(c *gin.Context) {
-//	p := new(models.ParamLogin)
-//	if err := c.ShouldBindJSON(p); err != nil {
-//		zap.L().Error("Login with invalid param", zap.Error(err))
-//
-//		errs, ok := err.(validator.ValidationErrors)
-//
-//		if !ok {
-//			c.JSON(http.StatusOK, gin.H{
-//
-//			})
-//		}
-//	}
-//}
+func LoginHandler(c *gin.Context) {
+	p := new(models.ParamLogin)
+	if err := c.ShouldBindJSON(p); err != nil {
+		zap.L().Error("Login with invalid param", zap.Error(err))
+
+		errs, ok := err.(validator.ValidationErrors)
+		if !ok {
+			// json format err
+			c.JSON(http.StatusOK, gin.H{
+				"msg": err.Error(),
+			})
+			return
+		}
+
+		c.JSON(http.StatusOK, gin.H{
+			"msg": removeTopStruct(errs.Translate(trans)),
+		})
+		return
+	}
+	if err := logic.Login(p); err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "user or password error",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "login success",
+	})
+}

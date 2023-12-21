@@ -67,3 +67,84 @@
 {"level":"INFO","time":"2023-12-20T21:49:05.742+0800","caller":"logger/logger.go:97","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0667992}
 {"level":"ERROR","time":"2023-12-20T21:49:24.688+0800","caller":"logic/user.go:19","msg":"SignUp failed, user existed"}
 {"level":"INFO","time":"2023-12-20T21:49:24.688+0800","caller":"logger/logger.go:97","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0018662}
+{"level":"INFO","time":"2023-12-21T10:30:49.290+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T10:30:49.292+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"ERROR","time":"2023-12-21T10:31:10.324+0800","caller":"mysql/mysql.go:26","msg":"connect DB failed, err: %v\n","error":"dial tcp 192.168.32.128:3306: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}
+{"level":"INFO","time":"2023-12-21T10:44:34.099+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T10:44:34.101+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T10:44:34.129+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T10:44:34.130+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T10:44:34.132+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T10:44:34.133+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T10:44:34.133+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T10:44:34.133+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T10:44:34.134+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T10:44:39.912+0800","caller":"logger/logger.go:97","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0030056}
+{"level":"INFO","time":"2023-12-21T10:48:05.376+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T10:48:05.388+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T10:48:05.479+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T10:48:05.479+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T10:48:05.479+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T10:48:05.480+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T10:48:05.480+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T10:48:05.480+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T10:48:05.481+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T10:48:08.183+0800","caller":"logger/logger.go:97","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0015028}
+{"level":"INFO","time":"2023-12-21T10:49:26.969+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T10:49:26.971+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T10:49:26.974+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T10:49:26.974+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T10:49:26.975+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T10:49:26.975+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T10:49:26.976+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T10:49:26.976+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T10:49:26.976+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T10:49:31.456+0800","caller":"mysql/user.go:64","msg":"orginal password","password":"8025"}
+{"level":"INFO","time":"2023-12-21T10:49:31.456+0800","caller":"mysql/user.go:66","msg":"now password","password":"8025"}
+{"level":"INFO","time":"2023-12-21T10:49:31.456+0800","caller":"logger/logger.go:97","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0025981}
+{"level":"INFO","time":"2023-12-21T10:50:05.557+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T10:50:05.559+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T10:50:05.563+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T10:50:05.563+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T10:50:05.565+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T10:50:05.565+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T10:50:05.566+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T10:50:05.566+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T10:50:05.566+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T10:50:07.852+0800","caller":"mysql/user.go:59","msg":"orginal password","password":"8025"}
+{"level":"INFO","time":"2023-12-21T10:50:07.853+0800","caller":"mysql/user.go:66","msg":"now password","password":"8025"}
+{"level":"INFO","time":"2023-12-21T10:50:07.854+0800","caller":"logger/logger.go:97","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0013156}
+{"level":"INFO","time":"2023-12-21T10:51:05.840+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T10:51:05.841+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T10:51:05.844+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T10:51:05.844+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T10:51:05.845+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T10:51:05.845+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T10:51:05.845+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T10:51:05.845+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T10:51:05.845+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T10:51:17.836+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T10:51:17.837+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T10:51:17.841+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T10:51:17.841+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T10:51:17.842+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T10:51:17.842+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T10:51:17.842+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T10:51:17.842+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T10:51:17.843+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T10:51:21.753+0800","caller":"mysql/user.go:59","msg":"orginal password","password":"8025"}
+{"level":"INFO","time":"2023-12-21T10:51:21.755+0800","caller":"mysql/user.go:66","msg":"now password","password":"8025"}
+{"level":"ERROR","time":"2023-12-21T10:51:21.755+0800","caller":"mysql/user.go:69","msg":"mysql err","error":"Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from user where username = ?' at line 1"}
+{"level":"INFO","time":"2023-12-21T10:51:21.755+0800","caller":"logger/logger.go:97","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.002005}
+{"level":"INFO","time":"2023-12-21T10:52:05.490+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T10:52:05.491+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T10:52:05.495+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T10:52:05.495+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T10:52:05.496+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T10:52:05.496+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T10:52:05.496+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T10:52:05.496+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T10:52:05.496+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T10:52:07.906+0800","caller":"mysql/user.go:59","msg":"orginal password","password":"8025"}
+{"level":"INFO","time":"2023-12-21T10:52:07.935+0800","caller":"mysql/user.go:66","msg":"now password","password":"$2a$10$HVVAudLvUEAGJbiWifrAxuLe.RjqwfDuY/TA3FdffkV0IfZWHNvwe"}
+{"level":"INFO","time":"2023-12-21T10:52:08.032+0800","caller":"logger/logger.go:97","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.1254077}
