@@ -64,7 +64,7 @@ func main() {
 	}
 	zap.L().Info("validator init success")
 
-	r := routes.SetupRouter()
+	r := routes.SetupRouter(settings.Conf.Mode)
 	err := r.Run(fmt.Sprintf(":%d", settings.Conf.Port))
 	if err != nil {
 		zap.L().Error("run server failed", zap.Error(err))

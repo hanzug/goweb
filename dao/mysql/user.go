@@ -8,15 +8,25 @@ import (
 	"goweb/models"
 )
 
-func CheckUserExits(username string) (bool, error) {
+var (
+	ErrUserExist       = errors.New("user existed")
+	ErrUserNotExist    = errors.New("user not exist")
+	ErrInvalidPassword = errors.New("password wrong")
+	ErrDatabaseGet     = errors.New("database get wrong")
+)
+
+func CheckUserExits(username string) (err error) {
 	sqlStr := "select count(user_id) from user where username = ?"
 
 	var count int
 
 	if err := db.Get(&count, sqlStr, username); err != nil {
-		return false, err
+		return err
 	}
-	return count > 0, nil
+	if count > 0 {
+		return ErrUserExist
+	}
+	return
 }
 
 func InsertUser(user *models.User) (err error) {
@@ -56,24 +66,23 @@ func Login(user *models.User) (err error) {
 
 	sqlStr := "select user_id, username, password from user where username = ?"
 
-	zap.L().Info("orginal password", zap.String("password", opassword))
+	//zap.L().Info("orginal password", zap.String("password", opassword))
 	err = db.Get(user, sqlStr, user.Username)
 	if err == sql.ErrNoRows {
 		zap.L().Info("user not exist")
-		return errors.New("user not exist")
+		return ErrUserNotExist
 	}
 
-	zap.L().Info("now password", zap.String("password", user.Password))
+	//zap.L().Info("now password", zap.String("password", user.Password))
 
 	if err != nil {
-		zap.L().Error("mysql err", zap.Error(err))
-		return
+		return ErrDatabaseGet
 	}
 
 	ok := comparePasswords(user.Password, opassword)
 	if !ok {
 		zap.L().Info("password error")
-		return errors.New("password error")
+		return ErrInvalidPassword
 	}
 	return
 }

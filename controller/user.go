@@ -1,9 +1,11 @@
 package controller
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"go.uber.org/zap"
+	"goweb/dao/mysql"
 	"goweb/logic"
 	"goweb/models"
 	"net/http"
@@ -12,7 +14,6 @@ import (
 func SignUpHandler(c *gin.Context) {
 
 	// check format
-
 	p := new(models.ParamSignUp)
 
 	if err := c.ShouldBindJSON(p); err != nil {
@@ -20,30 +21,28 @@ func SignUpHandler(c *gin.Context) {
 
 		errs, ok := err.(validator.ValidationErrors)
 		if !ok {
-			// json format err
-			c.JSON(http.StatusOK, gin.H{
-				"msg": err.Error(),
-			})
+			ResponseError(c, CodeInvalidParam)
 			return
 		}
 
-		c.JSON(http.StatusOK, gin.H{
-			"msg": removeTopStruct(errs.Translate(trans)),
-		})
+		ResponseErrorWithMsg(c, CodeInvalidParam, removeTopStruct(errs.Translate(trans)))
+
 		return
 	}
 
+	// format ok
+	// try login
 	if err := logic.SignUp(p); err != nil {
-		c.JSON(http.StatusOK, gin.H{
-			"msg": "SignUp failed",
-		})
+		if errors.Is(err, mysql.ErrUserExist) {
+			ResponseError(c, CodeUserExist)
+			return
+		}
+		ResponseError(c, CodeServerBusy)
 		return
 	}
 
 	// call back
-	c.JSON(http.StatusOK, gin.H{
-		"msg": "SignUp success",
-	})
+	ResponseSuccess(c, nil)
 
 	return
 }
@@ -55,26 +54,25 @@ func LoginHandler(c *gin.Context) {
 
 		errs, ok := err.(validator.ValidationErrors)
 		if !ok {
-			// json format err
-			c.JSON(http.StatusOK, gin.H{
-				"msg": err.Error(),
-			})
+			ResponseError(c, CodeInvalidParam)
 			return
 		}
 
+		ResponseErrorWithMsg(c, CodeInvalidParam, removeTopStruct(errs.Translate(trans)))
 		c.JSON(http.StatusOK, gin.H{
 			"msg": removeTopStruct(errs.Translate(trans)),
 		})
 		return
 	}
-	if err := logic.Login(p); err != nil {
-		c.JSON(http.StatusOK, gin.H{
-			"msg": "user or password error",
-		})
+	token, err := logic.Login(p)
+	if err != nil {
+		if errors.Is(err, mysql.ErrUserNotExist) {
+			ResponseError(c, CodeUserNotExist)
+			return
+		}
+		ResponseError(c, CodeInvalidPassword)
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"msg": "login success",
-	})
+	ResponseSuccess(c, token)
 }
