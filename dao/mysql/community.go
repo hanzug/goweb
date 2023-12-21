@@ -9,12 +9,12 @@ import (
 func GetCommunityList() (communityList []*models.Community, err error) {
 	sqlStr := "select community_id, community_name from community"
 
-	db.Get(&communityList, sqlStr)
+	db.Select(&communityList, sqlStr)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			zap.L().Warn("no community")
 			err = nil
 		}
 	}
-	return
+	return communityList, err
 }

@@ -97,3 +97,61 @@
 {"level":"INFO","time":"2023-12-21T20:20:13.315+0800","caller":"logger/logger.go:97","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0}
 {"level":"INFO","time":"2023-12-21T20:20:14.692+0800","caller":"logger/logger.go:97","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0}
 {"level":"INFO","time":"2023-12-21T20:20:16.437+0800","caller":"logger/logger.go:97","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0}
+{"level":"INFO","time":"2023-12-21T22:17:26.319+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T22:17:26.320+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T22:17:26.323+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T22:17:26.323+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T22:17:26.324+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T22:17:26.324+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T22:17:26.324+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T22:17:26.324+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T22:17:26.324+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T22:17:40.087+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0}
+{"level":"INFO","time":"2023-12-21T22:17:45.795+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0}
+{"level":"ERROR","time":"2023-12-21T22:18:21.072+0800","caller":"controller/user.go:53","msg":"Login with invalid param","error":"EOF"}
+{"level":"INFO","time":"2023-12-21T22:18:21.072+0800","caller":"logger/logger.go:97","msg":"/api/v1/login","status":200,"method":"POST","path":"/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0002126}
+{"level":"INFO","time":"2023-12-21T22:19:19.637+0800","caller":"logger/logger.go:97","msg":"/api/v1/login","status":200,"method":"POST","path":"/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0514712}
+{"level":"INFO","time":"2023-12-21T22:19:49.795+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0007723}
+{"level":"INFO","time":"2023-12-21T22:20:10.804+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0015252}
+{"level":"INFO","time":"2023-12-21T22:20:55.417+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T22:20:55.418+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T22:20:55.420+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T22:20:55.420+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T22:20:55.421+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T22:20:55.421+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T22:20:55.421+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T22:20:55.421+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T22:20:55.421+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T22:20:59.991+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.001504}
+{"level":"INFO","time":"2023-12-21T22:21:02.706+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0005017}
+{"level":"INFO","time":"2023-12-21T22:21:21.926+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T22:21:21.927+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T22:21:21.929+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T22:21:21.929+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T22:21:21.929+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T22:21:21.930+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T22:21:21.930+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T22:21:21.930+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T22:21:21.930+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T22:21:24.723+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0010033}
+{"level":"INFO","time":"2023-12-21T22:24:05.262+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T22:24:05.263+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T22:24:05.265+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T22:24:05.265+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T22:24:05.266+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T22:24:05.266+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T22:24:05.266+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T22:24:05.266+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T22:24:05.266+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T22:24:06.903+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0010235}
+{"level":"INFO","time":"2023-12-21T22:24:08.115+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0010602}
+{"level":"INFO","time":"2023-12-21T22:24:18.769+0800","caller":"goweb/main.go:34","msg":"logger init success"}
+{"level":"INFO","time":"2023-12-21T22:24:18.770+0800","caller":"goweb/main.go:37","msg":"mysql init..."}
+{"level":"INFO","time":"2023-12-21T22:24:18.772+0800","caller":"goweb/main.go:42","msg":"mysql init success"}
+{"level":"INFO","time":"2023-12-21T22:24:18.772+0800","caller":"goweb/main.go:45","msg":"redis init..."}
+{"level":"INFO","time":"2023-12-21T22:24:18.773+0800","caller":"goweb/main.go:50","msg":"redis init success"}
+{"level":"INFO","time":"2023-12-21T22:24:18.773+0800","caller":"goweb/main.go:53","msg":"snowflake init..."}
+{"level":"INFO","time":"2023-12-21T22:24:18.773+0800","caller":"goweb/main.go:58","msg":"snowflake init success"}
+{"level":"INFO","time":"2023-12-21T22:24:18.773+0800","caller":"goweb/main.go:60","msg":"validator init..."}
+{"level":"INFO","time":"2023-12-21T22:24:18.773+0800","caller":"goweb/main.go:65","msg":"validator init success"}
+{"level":"INFO","time":"2023-12-21T22:24:27.166+0800","caller":"logger/logger.go:97","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.36.0","errors":"","cost":0.0010753}
