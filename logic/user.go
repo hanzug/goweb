@@ -26,9 +26,9 @@ func SignUp(p *models.ParamSignUp) (err error) {
 	return
 }
 
-func Login(p *models.ParamLogin) (token string, err error) {
+func Login(p *models.ParamLogin) (user *models.User, err error) {
 
-	user := &models.User{
+	user = &models.User{
 		Username: p.Username,
 		Password: p.Password,
 	}
@@ -41,5 +41,7 @@ func Login(p *models.ParamLogin) (token string, err error) {
 
 	// generate token
 
-	return jwt.GenToken(user.UserID, user.Username)
+	user.Token, _ = jwt.GenToken(user.UserID, user.Username)
+
+	return
 }
