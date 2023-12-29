@@ -1,88 +1,70 @@
 package mysql
 
 import (
+	"crypto/md5"
 	"database/sql"
-	"errors"
-	"go.uber.org/zap"
-	"golang.org/x/crypto/bcrypt"
+	"encoding/hex"
 	"goweb/models"
 )
 
-var (
-	ErrUserExist       = errors.New("user existed")
-	ErrUserNotExist    = errors.New("user not exist")
-	ErrInvalidPassword = errors.New("password wrong")
-	ErrDatabaseGet     = errors.New("database get wrong")
-)
+// 把每一步数据库操作封装成函数
+// 待logic层根据业务需求调用
 
-func CheckUserExits(username string) (err error) {
-	sqlStr := "select count(user_id) from user where username = ?"
+const secret = "haria"
 
-	var count int
-
+// CheckUserExist 检查指定用户名的用户是否存在
+func CheckUserExist(username string) (err error) {
+	sqlStr := `select count(user_id) from user where username = ?`
+	var count int64
 	if err := db.Get(&count, sqlStr, username); err != nil {
 		return err
 	}
 	if count > 0 {
-		return ErrUserExist
+		return ErrorUserExist
 	}
 	return
 }
 
+// InsertUser 想数据库中插入一条新的用户记录
 func InsertUser(user *models.User) (err error) {
-
-	zap.L().Error("orginal password", zap.String("password", user.Password))
-	user.Password, _ = encryptPassword(user.Password)
-	zap.L().Error("now password", zap.String("password", user.Password))
-
-	sqlStr := "insert into user(user_id, username, password) values (?,?,?)"
-
+	// 对密码进行加密
+	user.Password = encryptPassword(user.Password)
+	// 执行SQL语句入库
+	sqlStr := `insert into user(user_id, username, password) values(?,?,?)`
 	_, err = db.Exec(sqlStr, user.UserID, user.Username, user.Password)
 	return
 }
 
-func encryptPassword(oPassword string) (string, error) {
-	// 生成随机的盐值，Cost 值越大，计算哈希的时间越长
-	salt, err := bcrypt.GenerateFromPassword([]byte(oPassword), bcrypt.DefaultCost)
-	if err != nil {
-		return "", err
-	}
-
-	return string(salt), nil
-}
-
-func comparePasswords(hashedPassword, oPassword string) bool {
-	// 将字符串类型的哈希密码转换为字节切片
-	hashedPasswordBytes := []byte(hashedPassword)
-
-	// 使用 bcrypt 检查密码是否匹配
-	err := bcrypt.CompareHashAndPassword(hashedPasswordBytes, []byte(oPassword))
-	return err == nil
+// encryptPassword 密码加密
+func encryptPassword(oPassword string) string {
+	h := md5.New()
+	h.Write([]byte(secret))
+	return hex.EncodeToString(h.Sum([]byte(oPassword)))
 }
 
 func Login(user *models.User) (err error) {
-
-	opassword := user.Password
-
-	sqlStr := "select user_id, username, password from user where username = ?"
-
-	//zap.L().Info("orginal password", zap.String("password", opassword))
+	oPassword := user.Password // 用户登录的密码
+	sqlStr := `select user_id, username, password from user where username=?`
 	err = db.Get(user, sqlStr, user.Username)
 	if err == sql.ErrNoRows {
-		zap.L().Info("user not exist")
-		return ErrUserNotExist
+		return ErrorUserNotExist
 	}
-
-	//zap.L().Info("now password", zap.String("password", user.Password))
-
 	if err != nil {
-		return ErrDatabaseGet
+		// 查询数据库失败
+		return err
 	}
+	// 判断密码是否正确
+	password := encryptPassword(oPassword)
+	if password != user.Password {
+		return ErrorInvalidPassword
+	}
+	return
+}
 
-	ok := comparePasswords(user.Password, opassword)
-	if !ok {
-		zap.L().Info("password error")
-		return ErrInvalidPassword
-	}
+// GetUserById 根据id获取用户信息
+func GetUserById(uid int64) (user *models.User, err error) {
+	user = new(models.User)
+	sqlStr := `select user_id, username from user where user_id = ?`
+	err = db.Get(user, sqlStr, uid)
 	return
 }

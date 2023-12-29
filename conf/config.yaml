@@ -1,5 +1,5 @@
 name: "bluebell"
-mode: "release"
+mode: "dev"
 port: 8084
 version: "v0.0.1"
 start_time: "2023-12-20"
@@ -15,7 +15,7 @@ log:
   max_age: 30
   max_backups: 7
 mysql:
-  host: "192.168.32.128"
+  host: "127.0.0.1"
   port: 3306
   user: "haria"
   password: "Han1373338025.."
@@ -23,7 +23,7 @@ mysql:
   max_open_conns: 200
   max_idle_conns: 50
 redis:
-  host: "192.168.32.128"
+  host: "127.0.0.1"
   port: 6379
   password: ""
   db: 0

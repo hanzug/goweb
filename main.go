@@ -2,73 +2,64 @@ package main
 
 import (
 	"fmt"
-	"go.uber.org/zap"
 	"goweb/controller"
 	"goweb/dao/mysql"
 	"goweb/dao/redis"
 	"goweb/logger"
 	"goweb/pkg/snowflake"
-	"goweb/routes"
-	"goweb/settings"
+	"goweb/router"
+	setting "goweb/settings"
 	"os"
 )
 
+// @title bluebell项目接口文档
+// @version 1.0
+// @description Go web开发进阶项目实战课程bluebell
+
+// @contact.name liwenzhou
+// @contact.url http://www.liwenzhou.com
+
+// @host 127.0.0.1:8084
+// @BasePath /api/v1
 func main() {
-
 	if len(os.Args) < 2 {
-		fmt.Println("need config file.eg: config/config.yaml")
+		fmt.Println("need config file.eg: goweb config.yaml")
 		return
 	}
-
-	fmt.Println("setting init...")
-	if err := settings.Init(os.Args[1]); err != nil {
-		fmt.Printf("init settings failed, err: %v\n", err)
+	// 加载配置
+	if err := setting.Init(os.Args[1]); err != nil {
+		fmt.Printf("load config failed, err:%v\n", err)
 		return
 	}
-	fmt.Println("setting init success")
-
-	if err := logger.Init(settings.Conf.LogConfig, settings.Conf.Mode); err != nil {
-		fmt.Printf("init logger failed, err: %v\n", err)
+	if err := logger.Init(setting.Conf.LogConfig, setting.Conf.Mode); err != nil {
+		fmt.Printf("init logger failed, err:%v\n", err)
 		return
 	}
-	zap.L().Info("logger init success")
-	defer zap.L().Sync()
-
-	zap.L().Info("mysql init...")
-	if err := mysql.Init(); err != nil {
-		fmt.Printf("init mysql failed, err: %v\n", err)
+	if err := mysql.Init(setting.Conf.MySQLConfig); err != nil {
+		fmt.Printf("init mysql failed, err:%v\n", err)
 		return
 	}
-	zap.L().Info("mysql init success")
-	defer mysql.Close()
-
-	zap.L().Info("redis init...")
-	if err := redis.Init(); err != nil {
-		fmt.Printf("init redis failed, err: %v\n", err)
+	defer mysql.Close() // 程序退出关闭数据库连接
+	if err := redis.Init(setting.Conf.RedisConfig); err != nil {
+		fmt.Printf("init redis failed, err:%v\n", err)
 		return
 	}
-	zap.L().Info("redis init success")
 	defer redis.Close()
 
-	zap.L().Info("snowflake init...")
-	if err := snowflake.Init(settings.Conf.StartTime, settings.Conf.MachineID); err != nil {
-		zap.L().Error("init snowflake failded", zap.Error(err))
+	if err := snowflake.Init(setting.Conf.StartTime, setting.Conf.MachineID); err != nil {
+		fmt.Printf("init snowflake failed, err:%v\n", err)
 		return
 	}
-	zap.L().Info("snowflake init success")
-
-	zap.L().Info("validator init...")
+	// 初始化gin框架内置的校验器使用的翻译器
 	if err := controller.InitTrans("zh"); err != nil {
-		zap.L().Error("init validator failded", zap.Error(err))
+		fmt.Printf("init validator trans failed, err:%v\n", err)
 		return
 	}
-	zap.L().Info("validator init success")
-
-	r := routes.SetupRouter(settings.Conf.Mode)
-	err := r.Run(fmt.Sprintf(":%d", settings.Conf.Port))
+	// 注册路由
+	r := router.SetupRouter(setting.Conf.Mode)
+	err := r.Run(fmt.Sprintf(":%d", setting.Conf.Port))
 	if err != nil {
-		zap.L().Error("run server failed", zap.Error(err))
+		fmt.Printf("run server failed, err:%v\n", err)
 		return
 	}
-
 }

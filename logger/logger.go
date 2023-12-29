@@ -1,12 +1,7 @@
 package logger
 
 import (
-	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/natefinch/lumberjack"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
-	"goweb/settings"
+	setting "goweb/settings"
 	"net"
 	"net/http"
 	"net/http/httputil"
@@ -14,54 +9,40 @@ import (
 	"runtime/debug"
 	"strings"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/natefinch/lumberjack"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 var lg *zap.Logger
 
-// InitLogger 初始化Logger
-// Init 函数用于初始化日志记录器。
-// 参数：
-//   - cfg: 日志配置参数，包括文件名、最大大小、最大备份数量、最大保留天数等。
-//   - mode: 日志模式，可以是 "dev"（开发模式）或其他（生产模式）。
-//
-// 返回值：
-//   - err: 初始化过程中的错误，如果为 nil 表示初始化成功。
-func Init(cfg *settings.LogConfig, mode string) (err error) {
-	fmt.Println("logger init begin") // 打印初始化开始的日志信息
-
-	// 获取日志写入器，根据配置创建一个具有滚动、备份等特性的写入器
+// Init 初始化lg
+func Init(cfg *setting.LogConfig, mode string) (err error) {
 	writeSyncer := getLogWriter(cfg.Filename, cfg.MaxSize, cfg.MaxBackups, cfg.MaxAge)
-
-	// 获取日志编码器，用于将日志消息编码为字节流
 	encoder := getEncoder()
-
-	// 解析配置中的日志级别
 	var l = new(zapcore.Level)
 	err = l.UnmarshalText([]byte(cfg.Level))
 	if err != nil {
-		fmt.Println("logger init failed") // 如果解析日志级别失败，打印初始化失败的日志信息
 		return
 	}
-
 	var core zapcore.Core
-
-	// 根据模式选择是否在控制台输出日志
 	if mode == "dev" {
+		// 进入开发模式，日志输出到终端
 		consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
 		core = zapcore.NewTee(
-			zapcore.NewCore(encoder, writeSyncer, l),                                     // 主要的日志记录核心
-			zapcore.NewCore(consoleEncoder, zapcore.Lock(os.Stdout), zapcore.DebugLevel), // 控制台输出核心
+			zapcore.NewCore(encoder, writeSyncer, l),
+			zapcore.NewCore(consoleEncoder, zapcore.Lock(os.Stdout), zapcore.DebugLevel),
 		)
 	} else {
-		core = zapcore.NewCore(encoder, writeSyncer, l) // 在生产模式下，只使用主要的日志记录核心
+		core = zapcore.NewCore(encoder, writeSyncer, l)
 	}
 
-	// 创建最终的 Logger，添加了调用者信息
 	lg = zap.New(core, zap.AddCaller())
 
-	// 替换全局日志记录器为当前创建的 Logger
 	zap.ReplaceGlobals(lg)
-
+	zap.L().Info("init logger success")
 	return
 }
 
@@ -94,7 +75,7 @@ func GinLogger() gin.HandlerFunc {
 		c.Next()
 
 		cost := time.Since(start)
-		zap.L().Info(path,
+		lg.Info(path,
 			zap.Int("status", c.Writer.Status()),
 			zap.String("method", c.Request.Method),
 			zap.String("path", path),
@@ -125,7 +106,7 @@ func GinRecovery(stack bool) gin.HandlerFunc {
 
 				httpRequest, _ := httputil.DumpRequest(c.Request, false)
 				if brokenPipe {
-					zap.L().Error(c.Request.URL.Path,
+					lg.Error(c.Request.URL.Path,
 						zap.Any("error", err),
 						zap.String("request", string(httpRequest)),
 					)
@@ -136,13 +117,13 @@ func GinRecovery(stack bool) gin.HandlerFunc {
 				}
 
 				if stack {
-					zap.L().Error("[Recovery from panic]",
+					lg.Error("[Recovery from panic]",
 						zap.Any("error", err),
 						zap.String("request", string(httpRequest)),
 						zap.String("stack", string(debug.Stack())),
 					)
 				} else {
-					zap.L().Error("[Recovery from panic]",
+					lg.Error("[Recovery from panic]",
 						zap.Any("error", err),
 						zap.String("request", string(httpRequest)),
 					)

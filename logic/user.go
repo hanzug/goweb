@@ -9,7 +9,7 @@ import (
 
 func SignUp(p *models.ParamSignUp) (err error) {
 
-	err = mysql.CheckUserExits(p.Username)
+	err = mysql.CheckUserExist(p.Username)
 	if err != nil {
 		return err
 	}
