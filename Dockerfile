@@ -4,7 +4,8 @@ FROM golang:alpine AS builder
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
-    GOARCH=amd64
+#    GOARCH=amd64\
+    GOPROXY=https://goproxy.cn
 
 # 移动到工作目录：/build
 WORKDIR /build
@@ -18,12 +19,12 @@ RUN go mod download
 COPY . .
 
 # 将我们的代码编译成二进制可执行文件 bluebell_app
-RUN go build -o bluebell_app .
+RUN go build -o goweb .
 
 ###################
 # 接下来创建一个小镜像
 ###################
-FROM debian:stretch-slim
+FROM ubuntu:latest
 
 COPY ./wait-for.sh /
 COPY ./templates /templates
@@ -31,7 +32,11 @@ COPY ./static /static
 COPY ./conf /conf
 
 # 从builder镜像中把/dist/app 拷贝到当前目录
-COPY --from=builder /build/bluebell_app /
+COPY --from=builder /build/goweb /
+
+
+
+
 
 RUN set -eux; \
 	apt-get update; \
@@ -44,4 +49,4 @@ RUN set -eux; \
 EXPOSE 8084
 
 # 需要运行的命令
-#ENTRYPOINT ["/bluebell_app", "conf/config.yaml"]
+ENTRYPOINT ["./goweb", "./conf/config.yaml"]

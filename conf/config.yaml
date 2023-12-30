@@ -16,15 +16,15 @@ log:
   max_backups: 7
 mysql:
   host: "127.0.0.1"
-  port: 3306
-  user: "haria"
+  port: 13306
+  user: "root"
   password: "Han1373338025.."
   dbname: "goweb"
   max_open_conns: 200
   max_idle_conns: 50
 redis:
   host: "127.0.0.1"
-  port: 6379
-  password: ""
+  port: 16379
+  password: "Han1373338025.."
   db: 0
   pool_size: 100
