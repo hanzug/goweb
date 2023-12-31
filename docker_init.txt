@@ -1,0 +1,8 @@
+```bash
+docker run -d  --name mysql -p 13306:3306  -e MYSQL_ROOT_PASSWORD=Han1373338025.. mysql:latest
+
+docker run -d  --name redis -p 16379:6379 redis:latest  --requirepass Han1373338025..
+
+docker run -d  --name goweb -p 8084:8084 --link mysql --link redis  goweb
+```
+
